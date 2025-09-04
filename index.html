@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi připojení</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Připojte se k Wi-Fi Local svým privátním heslem.</h1>
+        <p class="description">
+            Klikněte na tlačítko níže pro zkopírování hesla a poté stránku zavřete a připojte se k síti Wi-Fi. Zvolte síť ze seznamu Wi-Fi sítí a pro připojení vložte heslo ze schránky. Pokud se nelze připojit, zkontrolujte pokyny v e-mailu. Pokud to nepomůže, obraťte se na nts.internet@nts.cz.
+        </p>
+        <button id="copyButton">Zkopírovat heslo k síti Wi-Fi</button>
+        <p id="message" class="hidden"></p>
+    </div>
+
+    <script>
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const password = "15TER+11@Poj--h00otkxBzHHxcc";
+            navigator.clipboard.writeText(password).then(() => {
+                const messageElement = document.getElementById('message');
+                messageElement.textContent = "Heslo je zkopírováno ve schránce. Po použití jej doporučujeme smazat - data ve schránce jsou snadným cílem hackerů, malwaru a někdy i neškodných aplikací.";
+                messageElement.classList.remove('hidden');
+                
+                const buttonElement = document.getElementById('copyButton');
+                buttonElement.style.display = 'none'; // Skryje tlačítko po kliknutí
+            }).catch(err => {
+                console.error('Nepodařilo se zkopírovat text: ', err);
+            });
+        });
+    </script>
+</body>
+</html>
